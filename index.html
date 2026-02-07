@@ -112,7 +112,7 @@ h1{
   line-height:2;
 }
 
-/* PRANK BUTTONS */
+/* PRANK */
 .prank{
   margin:10px;
   padding:10px 22px;
@@ -137,8 +137,10 @@ h1{
   <div class="card" onclick="wish('🍫 Chocolate Day','Sweeter than chocolate 🍫','https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif')"><span>🍫</span></div>
   <div class="card" onclick="wish('🧸 Teddy Day','Your hug = home 🧸','https://media.giphy.com/media/3oEjI4sFlp73fvEYgw/giphy.gif')"><span>🧸</span></div>
   <div class="card" onclick="wish('🤞 Promise Day','Always you 🤍','https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif')"><span>🤞</span></div>
-  <div class="card" onclick="wish('🤗 Hug Day','Missing you 🤗','https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
-  <div class="card" onclick="wish('😘 Kiss Day','All my kisses are yours 😘','https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif')"><span>😘</span></div>
+  <div class="card" onclick="wish('🤗 Hug Day','Missing your warmth 🤗','https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
+
+  <!-- KISS DAY – FLYING KISS GIF -->
+  <div class="card" onclick="wish('😘 Kiss Day','All my kisses fly to you 😘💨','https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif')"><span>😘</span></div>
 
   <!-- FINAL LETTER -->
   <div class="card" onclick="finalLetter()"><span>💌</span></div>
@@ -160,7 +162,6 @@ const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
 canvas.height=innerHeight;
 
-let t=0;
 function drawHeart(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle="#ff4d6d";
@@ -196,7 +197,6 @@ function wish(title,text,gif){
     <h2>${title}</h2>
     <img src="${gif}">
     <p>${text}</p>
-    <button class="prank" onclick="alert('Got you 😜💗')">Click me 😈</button>
     <button class="close" onclick="closeM()">Close</button>
   `;
 }
@@ -215,7 +215,7 @@ When you're with me, I am always happy 💞<br><br>
 I love you more than my life 😭💗<br>
 Will you be my Valentine? 💐
     </div>
-    <button class="prank" onclick="alert('You are stuck with me forever 😌💘')">DON'T CLICK 😈</button>
+    <button class="prank" onclick="alert('Now you are mine forever 😌💘')">DON'T CLICK 😈</button>
     <button class="close" onclick="closeM()">Close</button>
   `;
 }
