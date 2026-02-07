@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You 💗</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffd6e8);
+  min-height:100vh;
+  overflow-x:hidden;
+  text-align:center;
+}
+
+/* emoji rain */
+.emoji{
+  position:fixed;
+  top:-10vh;
+  animation:fall 7s linear infinite;
+  pointer-events:none;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0}
+}
+
+/* header */
+h1{
+  margin:40px 10px;
+  color:#fff;
+  text-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+/* grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:22px;
+  padding:20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+/* letter cards */
+.card{
+  background:white;
+  border-radius:24px;
+  padding:25px 15px;
+  cursor:pointer;
+  box-shadow:0 15px 30px rgba(0,0,0,.25);
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  50%{transform:translateY(-8px)}
+}
+
+.card span{
+  font-size:46px;
+  display:block;
+}
+.card p{
+  margin:10px 0 0;
+  font-weight:600;
+}
+
+/* popup letter */
+#letterBox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  padding:20px;
+}
+#letter{
+  background:white;
+  border-radius:28px;
+  max-width:850px;
+  margin:40px auto;
+  padding:30px;
+  animation:open 0.6s ease;
+}
+@keyframes open{
+  from{transform:scale(.6);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+#letter p{
+  text-align:left;
+  line-height:1.9;
+  white-space:pre-wrap;
+}
+
+/* kiss burst */
+.burst{
+  position:fixed;
+  font-size:32px;
+  animation:burst 2s ease-out forwards;
+}
+@keyframes burst{
+  to{transform:translateY(-250px) scale(1.6);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="pranayanila.mp3" loop></audio>
+
+<script>
+/* play music on first click anywhere */
+document.addEventListener("click",()=>{
+  const m=document.getElementById("music");
+  if(m.paused) m.play();
+},{once:true});
+
+/* emoji rain */
+const emojis=["💗","💋","😘","🫠","🥹","💐","❤️","😚"];
+setInterval(()=>{
+  const e=document.createElement("div");
+  e.className="emoji";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(20+Math.random()*25)+"px";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),7000);
+},180);
+</script>
+
+<h1>Happy Valentine’s Day Achuuu 🥹💗</h1>
+
+<div class="grid">
+  <div class="card" onclick="pop('🌹','Rose Day – Every rose wants to be you')">
+    <span>🌹</span><p>Rose Day</p>
+  </div>
+  <div class="card" onclick="pop('🍫','Chocolate Day – Sweet like your smile')">
+    <span>🍫</span><p>Chocolate Day</p>
+  </div>
+  <div class="card" onclick="pop('🧸','Teddy Day – I want to hug you forever')">
+    <span>🧸</span><p>Teddy Day</p>
+  </div>
+  <div class="card" onclick="pop('💌','Promise Day – My heart is yours')">
+    <span>💌</span><p>Promise Day</p>
+  </div>
+  <div class="card" onclick="pop('🤗','Hug Day – Missing your warmth')">
+    <span>🤗</span><p>Hug Day</p>
+  </div>
+  <div class="card" onclick="pop('💋','Kiss Day – Every kiss lives in my heart')">
+    <span>💋</span><p>Kiss Day</p>
+  </div>
+  <div class="card" onclick="pop('❤️','Valentine’s Day – You are my forever')">
+    <span>❤️</span><p>Valentine’s Day</p>
+  </div>
+
+  <!-- 8th LETTER -->
+  <div class="card" onclick="openLetter()">
+    <span>💌</span><p>Click to open</p>
+  </div>
+</div>
+
+<!-- REAL LETTER -->
+<div id="letterBox" onclick="this.style.display='none'">
+  <div id="letter" onclick="event.stopPropagation()">
+    <h2>For You 💗</h2>
+    <p>
+Happy Valentine's day achuuu 🥹😘, so enich ente first valentine's day ahh enich entha parayandey ennu onnum arinjuda eppo manasli varunney ellam athupoley parayam 😌💗.  
+As I have mentioned a hundred times before, nee enik sherikkum oru blessing ahh 🥹.  
+My only dream and wish was you, and now I have that with me.  
+
+Life long motham koode vennonum ind, just otta kariyam ariyam — when you're with me, I am always happy.  
+Ethin munne orikkallum ellathe oru happiness enik eppo ind.  
+From the moment I wake up till I sleep, I feel your presence with me 🫠.  
+
+Nee ellathe oru secondum pattunillan realize cheythu.  
+And 😭 you're more beautiful every day — I fall for you again and again 💗  
+
+I love you more than my life 🥺💗  
+So will you be my Valentine, achuu? 💗💐
+    </p>
+  </div>
+</div>
+
+<script>
+function pop(emoji,text){
+  for(let i=0;i<25;i++){
+    const b=document.createElement("div");
+    b.className="burst";
+    b.innerText=emoji;
+    b.style.left=Math.random()*100+"vw";
+    b.style.top=Math.random()*100+"vh";
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),2000);
+  }
+  alert(text);
+}
+
+function openLetter(){
+  document.getElementById("letterBox").style.display="block";
+}
+</script>
+
+</body>
+</html>
