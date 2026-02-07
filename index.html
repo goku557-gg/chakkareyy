@@ -6,246 +6,222 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --pink:#ff6f91;
-  --glass:rgba(255,255,255,.55);
-}
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap');
 
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:'Segoe UI',system-ui,sans-serif;
-  background:
-    radial-gradient(circle at top,#ffe3ef,#ffc2d1),
-    linear-gradient(135deg,#ff758c,#ff7eb3);
   min-height:100vh;
-  overflow-x:hidden;
-  color:#333;
+  background:linear-gradient(135deg,#ff758c,#ff9a9e,#fad0c4);
+  font-family:'Poppins',sans-serif;
+  text-align:center;
+  overflow:hidden;
+  color:white;
 }
 
-/* ===== CINEMATIC INTRO ===== */
-#intro{
+/* HEART CANVAS */
+canvas{
   position:fixed;
   inset:0;
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:20;
-  animation:fadeIntro 4s forwards;
-}
-#intro h1{
-  color:white;
-  font-size:clamp(2.5rem,6vw,4rem);
-  animation:glow 2s infinite alternate;
-}
-@keyframes fadeIntro{
-  0%{opacity:1}
-  70%{opacity:1}
-  100%{opacity:0;visibility:hidden}
-}
-@keyframes glow{
-  from{text-shadow:0 0 10px #fff}
-  to{text-shadow:0 0 30px #fff}
+  z-index:-1;
 }
 
-/* ===== Emoji rain ===== */
+/* EMOJI RAIN */
 .emoji{
   position:fixed;
-  top:-10vh;
-  opacity:.6;
-  animation:fall 9s linear infinite;
+  top:-40px;
+  font-size:28px;
+  animation:fall linear infinite;
   pointer-events:none;
 }
 @keyframes fall{
-  to{transform:translateY(120vh);opacity:0}
+  to{transform:translateY(110vh) rotate(360deg)}
 }
 
-/* ===== Header ===== */
-header{
-  text-align:center;
-  padding:80px 20px 30px;
-}
-header h1{
-  color:white;
-  font-size:clamp(2rem,5vw,3rem);
-  text-shadow:0 10px 25px rgba(0,0,0,.25);
+/* TITLE */
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:3.8rem;
+  margin:30px 0 10px;
 }
 
-/* ===== Grid ===== */
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:26px;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:20px;
   padding:30px;
-  max-width:1100px;
+  max-width:900px;
   margin:auto;
 }
 
-/* ===== Cards ===== */
 .card{
-  background:var(--glass);
-  backdrop-filter:blur(14px);
-  border-radius:28px;
-  padding:30px 20px;
-  text-align:center;
+  background:rgba(255,255,255,.25);
+  border-radius:22px;
+  padding:28px 10px;
   cursor:pointer;
-  box-shadow:0 20px 45px rgba(0,0,0,.18);
-  transition:.4s ease;
-  animation:float 4s ease-in-out infinite;
+  transition:.4s;
+  box-shadow:0 15px 30px rgba(0,0,0,.3);
 }
 .card:hover{
-  transform:translateY(-10px) scale(1.05);
+  transform:scale(1.15) rotate(2deg);
 }
-.card span{
-  font-size:50px;
-  display:block;
-}
-.card p{
-  margin-top:12px;
-  font-weight:600;
-}
+.card span{font-size:55px}
 
-/* floating */
-@keyframes float{
-  50%{transform:translateY(-6px)}
-}
-
-/* ===== Modal ===== */
-.overlay{
+/* MODAL */
+.modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.85);
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
   z-index:10;
 }
-.modal{
+.modal-content{
   background:white;
-  border-radius:32px;
-  max-width:900px;
-  width:100%;
-  padding:35px;
-  animation:open .5s ease;
+  color:#333;
+  padding:25px;
+  border-radius:20px;
+  max-width:650px;
+  width:90%;
+  animation:pop .4s ease;
 }
-@keyframes open{
-  from{transform:scale(.7);opacity:0}
+@keyframes pop{
+  from{transform:scale(.6);opacity:0}
   to{transform:scale(1);opacity:1}
 }
-.modal h2{
-  text-align:center;
-  color:var(--pink);
+.modal-content img{
+  width:100%;
+  border-radius:15px;
+  margin:15px 0;
 }
-.modal p{
-  white-space:pre-wrap;
+.close{
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:8px 22px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* LETTER */
+.letter{
+  font-family:'Great Vibes',cursive;
+  font-size:1.4rem;
   line-height:2;
 }
 
-/* ===== Burst ===== */
-.burst{
-  position:fixed;
-  font-size:34px;
-  animation:burst 2.2s ease-out forwards;
-}
-@keyframes burst{
-  to{transform:translateY(-260px) scale(1.7);opacity:0}
+/* PRANK BUTTONS */
+.prank{
+  margin:10px;
+  padding:10px 22px;
+  border:none;
+  border-radius:20px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <h1>For You 💗</h1>
+<canvas id="heartCanvas"></canvas>
+
+<h1>For You 💗</h1>
+
+<div class="grid">
+  <div class="card" onclick="wish('🌹 Rose Day','Every rose is jealous of you 🌹','https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif')"><span>🌹</span></div>
+  <div class="card" onclick="wish('💍 Propose Day','Forever starts with you 💍','https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif')"><span>💍</span></div>
+  <div class="card" onclick="wish('🍫 Chocolate Day','Sweeter than chocolate 🍫','https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif')"><span>🍫</span></div>
+  <div class="card" onclick="wish('🧸 Teddy Day','Your hug = home 🧸','https://media.giphy.com/media/3oEjI4sFlp73fvEYgw/giphy.gif')"><span>🧸</span></div>
+  <div class="card" onclick="wish('🤞 Promise Day','Always you 🤍','https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif')"><span>🤞</span></div>
+  <div class="card" onclick="wish('🤗 Hug Day','Missing you 🤗','https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
+  <div class="card" onclick="wish('😘 Kiss Day','All my kisses are yours 😘','https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif')"><span>😘</span></div>
+
+  <!-- FINAL LETTER -->
+  <div class="card" onclick="finalLetter()"><span>💌</span></div>
 </div>
 
-<audio id="music" src="pranayanila.mp3" loop></audio>
+<div class="modal" id="modal">
+  <div class="modal-content" id="content"></div>
+</div>
+
+<audio id="song" src="pranayanila.mp3" loop></audio>
 
 <script>
-/* music on first interaction */
-document.addEventListener("pointerdown",()=>{
-  const m=document.getElementById("music");
-  if(m.paused) m.play();
-},{once:true});
+/* CHANGE HER NAME HERE 💗 */
+const herName = "ACHUU";
 
-/* emoji rain */
-const emojis=["💗","💋","😘","🫠","🥹","💐","❤️","😚"];
+/* AUTO HEART + NAME */
+const canvas=document.getElementById("heartCanvas");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let t=0;
+function drawHeart(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#ff4d6d";
+  for(let i=0;i<300;i++){
+    let x=16*Math.pow(Math.sin(i),3);
+    let y=13*Math.cos(i)-5*Math.cos(2*i)-2*Math.cos(3*i)-Math.cos(4*i);
+    ctx.beginPath();
+    ctx.arc(canvas.width/2+x*20,canvas.height/2-y*20,2,0,Math.PI*2);
+    ctx.fill();
+  }
+  ctx.font="48px Great Vibes";
+  ctx.fillStyle="white";
+  ctx.fillText(herName,canvas.width/2-ctx.measureText(herName).width/2,canvas.height/2+90);
+}
+setInterval(drawHeart,100);
+
+/* EMOJI RAIN */
+const emojis=["💗","💖","💘","😘","💋","😍"];
 setInterval(()=>{
   const e=document.createElement("div");
   e.className="emoji";
-  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
   e.style.left=Math.random()*100+"vw";
-  e.style.fontSize=(18+Math.random()*24)+"px";
+  e.style.animationDuration=(3+Math.random()*4)+"s";
+  e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
   document.body.appendChild(e);
-  setTimeout(()=>e.remove(),9000);
-},250);
-</script>
+  setTimeout(()=>e.remove(),7000);
+},200);
 
-<header>
-  <h1>Happy Valentine’s Day Achuuu 🥹💗</h1>
-</header>
-
-<div class="grid">
-  <div class="card" onclick="burst('🌹')"><span>🌹</span><p>Rose Day</p></div>
-  <div class="card" onclick="burst('🍫')"><span>🍫</span><p>Chocolate Day</p></div>
-  <div class="card" onclick="burst('🧸')"><span>🧸</span><p>Teddy Day</p></div>
-  <div class="card" onclick="burst('💌')"><span>💌</span><p>Promise Day</p></div>
-  <div class="card" onclick="burst('🤗')"><span>🤗</span><p>Hug Day</p></div>
-  <div class="card" onclick="burst('💋')"><span>💋</span><p>Kiss Day</p></div>
-  <div class="card" onclick="burst('❤️')"><span>❤️</span><p>Valentine’s Day</p></div>
-
-  <div class="card" onclick="openLetter()">
-    <span>💌</span>
-    <p>Click to open</p>
-  </div>
-</div>
-
-<!-- LETTER -->
-<div class="overlay" id="overlay" onclick="closeLetter()">
-  <div class="modal" onclick="event.stopPropagation()">
-    <h2>For You 💗</h2>
-    <p>
-Happy Valentine's day achuuu 🥹😘, so enich ente first valentine's day ahh enich entha parayandey ennu onnum arinjuda eppo manasli varunney ellam athupoley parayam 😌💗.
-As I have mentioned a hundred times before, nee enik sherikkum oru blessing ahh 🥹.
-
-My only dream and wish was you, and now I have that with me.
-Life long motham koode vennonum ind — when you're with me, I am always happy.
-
-Ethin munne orikkallum ellathe oru happiness enik eppo ind.
-From the moment I wake up until I sleep, I feel your presence with me 🫠.
-
-Nee ellathe oru secondum pattunillan realize cheythu.
-And 😭 you're more beautiful every day — I fall for you again and again 💗
-
-I love you more than my life 🥺💗
-So will you be my Valentine, achuu? 💗💐
-    </p>
-  </div>
-</div>
-
-<script>
-function burst(emoji){
-  for(let i=0;i<26;i++){
-    const b=document.createElement("div");
-    b.className="burst";
-    b.innerText=emoji;
-    b.style.left=Math.random()*100+"vw";
-    b.style.top=Math.random()*100+"vh";
-    document.body.appendChild(b);
-    setTimeout(()=>b.remove(),2200);
-  }
+/* MODALS */
+function wish(title,text,gif){
+  modal.style.display="flex";
+  content.innerHTML=`
+    <h2>${title}</h2>
+    <img src="${gif}">
+    <p>${text}</p>
+    <button class="prank" onclick="alert('Got you 😜💗')">Click me 😈</button>
+    <button class="close" onclick="closeM()">Close</button>
+  `;
 }
 
-function openLetter(){
-  document.getElementById("overlay").style.display="flex";
+/* FINAL LETTER */
+function finalLetter(){
+  modal.style.display="flex";
+  document.getElementById("song").play();
+  content.innerHTML=`
+    <h2>💗 My Love 💗</h2>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+    <div class="letter">
+Happy Valentine's day achuuu 🥹😘<br><br>
+Nee enik sherikkum oru blessing ahh 🥹<br>
+When you're with me, I am always happy 💞<br><br>
+I love you more than my life 😭💗<br>
+Will you be my Valentine? 💐
+    </div>
+    <button class="prank" onclick="alert('You are stuck with me forever 😌💘')">DON'T CLICK 😈</button>
+    <button class="close" onclick="closeM()">Close</button>
+  `;
 }
 
-function closeLetter(){
-  document.getElementById("overlay").style.display="none";
+function closeM(){
+  modal.style.display="none";
 }
 </script>
 
