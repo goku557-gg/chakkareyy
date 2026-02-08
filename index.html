@@ -2,215 +2,203 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 💗</title>
+<title>For My Chakkarey 💗</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap');
-
-*{margin:0;padding:0;box-sizing:border-box}
-
+*{box-sizing:border-box}
 body{
-  min-height:100vh;
-  background:linear-gradient(135deg,#ff758c,#ff9a9e,#fad0c4);
-  font-family:'Poppins',sans-serif;
-  text-align:center;
-  overflow:hidden;
-  color:white;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:radial-gradient(circle at top,#ffb6c1,#ff5f8a,#b3005e);
+  overflow-x:hidden;
 }
 
-canvas{
+/* HEART BEAT BACKGROUND */
+.heartbeat{
   position:fixed;
   inset:0;
+  background:url("https://i.imgur.com/7rXKJ9n.png") center/200px repeat;
+  animation:pulse 1.5s infinite;
+  opacity:.12;
   z-index:-1;
 }
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
 
+/* EMOJI RAIN */
 .emoji{
   position:fixed;
-  top:-40px;
-  font-size:28px;
-  animation:fall linear infinite;
+  top:-10vh;
+  animation:fall 6s linear infinite;
   pointer-events:none;
 }
 @keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg)}
+  to{transform:translateY(110vh);opacity:0}
 }
 
-h1{
-  font-family:'Great Vibes',cursive;
-  font-size:3.8rem;
-  margin:30px 0 10px;
+h1,h2{
+  color:white;
+  text-shadow:0 0 15px #ff8fab;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  gap:20px;
-  padding:30px;
-  max-width:900px;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:25px;
+  padding:40px;
+  max-width:1000px;
   margin:auto;
 }
 
-.card{
-  background:rgba(255,255,255,.25);
+.letterBox{
+  background:white;
   border-radius:22px;
-  padding:28px 10px;
+  padding:20px;
   cursor:pointer;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
   transition:.4s;
-  box-shadow:0 15px 30px rgba(0,0,0,.3);
 }
-.card:hover{
-  transform:scale(1.15) rotate(2deg);
+.letterBox:hover{
+  transform:scale(1.08) rotate(-1deg);
 }
-.card span{font-size:55px}
 
+.letterBox h3{
+  margin:0;
+  color:#ff3b6f;
+}
+
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.85);
+  background:rgba(0,0,0,.6);
   display:none;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   z-index:10;
 }
-.modal-content{
+.modalContent{
   background:white;
-  color:#333;
+  border-radius:25px;
   padding:25px;
-  border-radius:20px;
-  max-width:650px;
-  width:90%;
-  animation:pop .4s ease;
+  max-width:420px;
+  text-align:center;
+  animation:pop .5s;
 }
 @keyframes pop{
-  from{transform:scale(.6);opacity:0}
+  from{transform:scale(.5);opacity:0}
   to{transform:scale(1);opacity:1}
 }
-.modal-content img{
-  width:100%;
-  border-radius:15px;
-  margin:15px 0;
+
+.modal img{
+  max-width:100%;
+  border-radius:20px;
 }
+
 .close{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:25px;
   background:#ff4d6d;
   color:white;
-  border:none;
-  padding:8px 22px;
-  border-radius:20px;
   cursor:pointer;
 }
 
-.letter{
-  font-family:'Great Vibes',cursive;
-  font-size:1.4rem;
-  line-height:2;
+/* FINAL LETTER */
+.finalText{
+  font-size:1.05rem;
+  line-height:1.8;
+  color:#444;
+}
+.glow{
+  animation:glowBeat 1.2s infinite;
+}
+@keyframes glowBeat{
+  0%,100%{text-shadow:0 0 10px #ff6f91}
+  50%{text-shadow:0 0 30px #ff2f68}
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="heartCanvas"></canvas>
+<div class="heartbeat"></div>
 
-<h1>For You 💗</h1>
-
-<div class="grid">
-  <div class="card" onclick="wish('🌹 Rose Day',
-  'rose 🌹 enthayallum eppo tharan pattillalo kannan pattuvarney thanney but enodu choych nokk onlineil rose tharam 😌',
-  'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif')"><span>🌹</span></div>
-
-  <div class="card" onclick="wish('🍫 Chocolate Day',
-  'chocolate onnum enich venon ella 🫣 kavilil kadi tharan olla option indo achu ?🫣 Vangitharatto 😘',
-  'https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif')"><span>🍫</span></div>
-
-  <div class="card" onclick="wish('🧸 Teddy Day',
-  'teddy akke vangi tharam but nee athine kettipidich uranguvoo 🧐',
-  'https://media.giphy.com/media/3oEjI4sFlp73fvEYgw/giphy.gif')"><span>🧸</span></div>
-
-  <div class="card" onclick="wish('🤞 Promise Day',
-  'mattethil paranja poley thanney ente life ahh ninak promise 🥹🫂 nee ellathe njan ella ponney 😘',
-  'https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif')"><span>🤞</span></div>
-
-  <div class="card" onclick="wish('🤗 Hug Day',
-  'ente aduth indarney njan eppollum kettipidichond erunney 🥹🫂 chakkarey 😘',
-  'https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
-
-  <!-- CHANGED KISS DAY GIF 💋 -->
-  <div class="card" onclick="wish('😘 Kiss Day',
-  '🫣 enich ishttapole tharuindalo alley 🫣 onnude kuduthal thaa njanum aloyikkam 😘',
-  'https://media.giphy.com/media/11sBLVxNs7v6WA/giphy.gif')"><span>😘</span></div>
-
-  <div class="card" onclick="wish('❤️ Valentine’s Day',
-  'jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘😘😘😘',
-  'https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif')"><span>❤️</span></div>
-
-  <div class="card" onclick="finalLetter()"><span>💌</span></div>
-</div>
-
-<div class="modal" id="modal">
-  <div class="modal-content" id="content"></div>
-</div>
-
-<audio id="song" src="pranayanila.mp3" loop></audio>
+<audio id="song">
+  <source src="pranayanila.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const herName="ACHUU";
-
-const canvas=document.getElementById("heartCanvas");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-
-function drawHeart(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle="#ff4d6d";
-  for(let i=0;i<300;i++){
-    let x=16*Math.pow(Math.sin(i),3);
-    let y=13*Math.cos(i)-5*Math.cos(2*i)-2*Math.cos(3*i)-Math.cos(4*i);
-    ctx.beginPath();
-    ctx.arc(canvas.width/2+x*20,canvas.height/2-y*20,2,0,Math.PI*2);
-    ctx.fill();
-  }
-  ctx.font="48px Great Vibes";
-  ctx.fillStyle="white";
-  ctx.fillText(herName,canvas.width/2-ctx.measureText(herName).width/2,canvas.height/2+90);
-}
-setInterval(drawHeart,100);
-
-const emojis=["💗","💖","💘","😘","💋","🫂"];
+const emojis=["💗","💋","🫂","😘","🥹","💐","❤️"];
 setInterval(()=>{
   const e=document.createElement("div");
   e.className="emoji";
-  e.style.left=Math.random()*100+"vw";
-  e.style.animationDuration=(3+Math.random()*4)+"s";
   e.innerText=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(18+Math.random()*25)+"px";
   document.body.appendChild(e);
-  setTimeout(()=>e.remove(),7000);
+  setTimeout(()=>e.remove(),6000);
 },200);
+</script>
 
-function wish(title,text,gif){
-  modal.style.display="flex";
+<h1 align="center">Happy Valentine’s Week Achuuu 🥹💗</h1>
+
+<div class="grid">
+  <div class="letterBox" onclick="openL('🤗 Hug Day','ente aduth indarney njan eppollum kettipidichond erunney 🥹🫂 chakkarey 😘','https://media.giphy.com/media/l4FGpP4lxGGgK5CBW/giphy.gif')"><h3>🤗 Hug Day</h3></div>
+
+  <div class="letterBox" onclick="openL('💋 Kiss Day','🫣 enich ishttapole tharuindalo alley 🫣 onnude kuduthal thaa njanum aloyikkam 😘','https://media.giphy.com/media/3oz8xIsloV7zOmt81G/giphy.gif')"><h3>💋 Kiss Day</h3></div>
+
+  <div class="letterBox" onclick="openL('💌 Promise Day','ente life ahh ninak promise 🥹🫂 nee ellathe njan ella ponney 😘','https://media.giphy.com/media/JGNmo9nBmmy8U/giphy.gif')"><h3>💌 Promise Day</h3></div>
+
+  <div class="letterBox" onclick="openL('🍫 Chocolate Day','chocolate onnum enich venon ella 🫣 kavilil kadi tharan olla option indo achu ? 😘','https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif')"><h3>🍫 Chocolate Day</h3></div>
+
+  <div class="letterBox" onclick="openL('🧸 Teddy Day','teddy vangi tharam but nee athine kettipidich uranguvoo 🧐','https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif')"><h3>🧸 Teddy Day</h3></div>
+
+  <div class="letterBox" onclick="openL('🌹 Rose Day','rose 🌹 eppo tharan pattillalo… but onlineil tharam 😌','https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif')"><h3>🌹 Rose Day</h3></div>
+
+  <div class="letterBox" onclick="openL('❤️ Valentine’s Day','jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘','https://media.giphy.com/media/xUPGcguWZHRC2HyBRS/giphy.gif')"><h3>❤️ Valentine</h3></div>
+
+  <div class="letterBox" onclick="finalLetter()"><h3>💌 Open Me</h3></div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modalContent" id="content"></div>
+</div>
+
+<script>
+const modal=document.getElementById("modal");
+const content=document.getElementById("content");
+
+function openL(title,text,gif){
   content.innerHTML=`
     <h2>${title}</h2>
     <img src="${gif}">
     <p>${text}</p>
     <button class="close" onclick="closeM()">Close</button>
   `;
+  modal.style.display="flex";
 }
 
 function finalLetter(){
-  modal.style.display="flex";
-  document.getElementById("song").play();
+  const song=document.getElementById("song");
+  song.currentTime=0;
+  song.play();
+
   content.innerHTML=`
-    <h2>💗 My Love 💗</h2>
+    <h2 class="glow">💗 My Chakkareyyy 💗</h2>
     <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
-    <div class="letter">
-      I love you more than my life 😭💗<br>
-      Nee ente ellam ahh chakkareyyy 🫂💋<br>
-      Forever yours 😘
-    </div>
+    <p class="finalText">
+      loveeeeeeeeeeeeeeeeeeee youuuuuuuuuuuuu moreeeeeeeeeeeeeeeeeeeeeeeeeee<br>
+      thannnnnnnnnn my lifeeeeeeeeeeeee chakkareyyy 😭💋<br><br>
+      Nee ente ellam ahh… forever 🫂💗
+    </p>
     <button class="close" onclick="closeM()">Close</button>
   `;
+  modal.style.display="flex";
 }
 
 function closeM(){
