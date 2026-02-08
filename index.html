@@ -14,6 +14,7 @@ body{
   text-align:center;
 }
 
+/* emoji rain */
 .emoji{
   position:fixed;
   top:-10vh;
@@ -25,45 +26,44 @@ body{
   to{transform:translateY(110vh);opacity:0}
 }
 
+h1{margin-top:30px}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:18px;
-  padding:40px;
+  padding:35px;
   max-width:900px;
   margin:auto;
 }
 
-.letter-box{
+.box{
   background:white;
   border-radius:22px;
   padding:25px 10px;
-  font-size:1.1rem;
+  font-size:1.05rem;
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
-  transition:transform .3s;
+  box-shadow:0 10px 22px rgba(0,0,0,0.2);
+  transition:.3s;
 }
-
-.letter-box:hover{
-  transform:scale(1.05);
-}
+.box:hover{transform:scale(1.05)}
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,.6);
   justify-content:center;
   align-items:center;
   z-index:10;
 }
 
-.modal-content{
+.content{
   background:white;
   border-radius:26px;
-  padding:25px;
-  max-width:500px;
-  animation:pop .5s ease;
+  padding:22px;
+  max-width:480px;
+  animation:pop .4s ease;
 }
 
 @keyframes pop{
@@ -71,9 +71,9 @@ body{
   to{transform:scale(1);opacity:1}
 }
 
-.modal img{
+.content img{
   width:100%;
-  max-height:260px;
+  max-height:240px;
   object-fit:contain;
 }
 
@@ -85,12 +85,6 @@ body{
   background:#ff4d6d;
   color:white;
   cursor:pointer;
-}
-
-#finalContent{
-  line-height:1.8;
-  text-align:left;
-  white-space:pre-wrap;
 }
 
 audio{display:none}
@@ -113,91 +107,84 @@ setInterval(()=>{
   e.style.fontSize=(18+Math.random()*26)+"px";
   document.body.appendChild(e);
   setTimeout(()=>e.remove(),7000);
-},200);
+},220);
 </script>
 
 <h1>💗 Valentine Week 💗</h1>
 
 <div class="grid">
-  <div class="letter-box" onclick="openLetter('rose')">🌹 Rose Day</div>
-  <div class="letter-box" onclick="openLetter('choco')">🍫 Chocolate Day</div>
-  <div class="letter-box" onclick="openLetter('teddy')">🧸 Teddy Day</div>
-  <div class="letter-box" onclick="openLetter('promise')">💌 Promise Day</div>
-  <div class="letter-box" onclick="openLetter('hug')">🫂 Hug Day</div>
-  <div class="letter-box" onclick="openLetter('kiss')">💋 Kiss Day</div>
-  <div class="letter-box" onclick="openLetter('valentine')">❤️ Valentine</div>
-  <div class="letter-box" onclick="finalLetter()">💌 Open</div>
+  <div class="box" onclick="openL('rose')">🌹 Rose Day</div>
+  <div class="box" onclick="openL('choco')">🍫 Chocolate Day</div>
+  <div class="box" onclick="openL('teddy')">🧸 Teddy Day</div>
+  <div class="box" onclick="openL('promise')">💌 Promise Day</div>
+  <div class="box" onclick="openL('hug')">🫂 Hug Day</div>
+  <div class="box" onclick="openL('kiss')">💋 Kiss Day</div>
+  <div class="box" onclick="openL('val')">❤️ Valentine</div>
+  <div class="box" onclick="finalL()">💌 Open</div>
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-content" id="content"></div>
+<div class="modal" id="m">
+  <div class="content" id="c"></div>
 </div>
 
 <script>
-const modal=document.getElementById("modal");
-const content=document.getElementById("content");
+const m=document.getElementById("m");
+const c=document.getElementById("c");
 
-function closeM(){ modal.style.display="none"; }
+function closeM(){m.style.display="none"}
 
-function openLetter(type){
-  const data={
-    rose:{
-      gif:"https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-      text:"rose 🌹 enthayallum eppo tharan pattillalo… onlineil rose tharam 😌"
-    },
-    choco:{
-      gif:"https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif",
-      text:"chocolate onnum venon ella 🫣 kavilil kadi tharan option indo achu 😘"
-    },
-    teddy:{
-      gif:"https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-      text:"teddy vangi tharam… but nee athine kettipidich uranguvoo 🧐"
-    },
-    promise:{
-      gif:"https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif",
-      text:"ente life ahh ninak promise 🥹🫂 nee ellathe njan ella 😘"
-    },
-    hug:{
-      gif:"https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif",
-      text:"ente aduth indarney njan eppollum kettipidichond erunney 🥹🫂"
-    },
-    kiss:{
-      gif:"https://media.giphy.com/media/11k3oaUjSlFR4I/giphy.gif",
-      text:"enich ishttapole tharuindalo 🫣 onnude kuduthal thaa 😘"
-    },
-    valentine:{
-      gif:"https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif",
-      text:"jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘"
-    }
-  };
+function openL(t){
+const d={
+rose:{
+gif:"https://media.tenor.com/7s0r1YkzJ7kAAAAC/rose-love.gif",
+txt:"rose 🌹 eppo tharan pattillalo… onlineil rose tharam 😌"
+},
+choco:{
+gif:"https://media.tenor.com/1G3pLZxZzFQAAAAC/chocolate-love.gif",
+txt:"chocolate venon ella 🫣 kavilil kadi tharan option indo achu 😘"
+},
+teddy:{
+gif:"https://media.tenor.com/5b5jzKX4t9YAAAAC/teddy-bear-hug.gif",
+txt:"teddy vangi tharam… but nee kettipidich uranguvoo 🧐"
+},
+promise:{
+gif:"https://media.tenor.com/FmN4XkG4z0cAAAAC/promise-love.gif",
+txt:"ente life ninak promise 🥹🫂 nee ellathe njan ella 😘"
+},
+hug:{
+gif:"https://media.tenor.com/6gHLhmwO87kAAAAC/hug-love.gif",
+txt:"ente aduth indarney njan kettipidichond erunney 🥹🫂"
+},
+kiss:{
+gif:"https://media.tenor.com/4n8ZxvDkY0sAAAAC/flying-kiss-love.gif",
+txt:"ishtapole tharuindalo 🫣 onnude kuduthal thaa 😘"
+},
+val:{
+gif:"https://media.tenor.com/Ry6pWcZ4w1cAAAAC/love-heart.gif",
+txt:"jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘"
+}
+};
 
-  content.innerHTML=`
-    <img src="${data[type].gif}">
-    <p>${data[type].text}</p>
-    <button class="close" onclick="closeM()">Close</button>
-  `;
-  modal.style.display="flex";
+c.innerHTML=`
+<img src="${d[t].gif}">
+<p>${d[t].txt}</p>
+<button class="close" onclick="closeM()">Close</button>`;
+m.style.display="flex";
 }
 
-function finalLetter(){
-  const song=document.getElementById("song");
-  song.currentTime=0;
-  song.play();
-
-  content.innerHTML=`
-    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
-    <div id="finalContent">
+function finalL(){
+document.getElementById("song").play();
+c.innerHTML=`
+<img src="https://media.tenor.com/JW9W1XW9XoUAAAAC/love-you.gif">
+<p style="white-space:pre-wrap;text-align:left;line-height:1.8">
 Happy Valentine's day achuuu 🥹😘,
-so enich ente first valentine's day ahh…
-
-( your full letter text stays exactly here 💗 )
-    </div>
-    <button class="close" onclick="closeM()">Close</button>
-  `;
-  modal.style.display="flex";
+so enich ente first valentine's day ahh...
+( full letter stays here 💗 )
+</p>
+<button class="close" onclick="closeM()">Close</button>`;
+m.style.display="flex";
 }
 </script>
 
 </body>
 </html>
-
