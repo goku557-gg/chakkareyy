@@ -21,12 +21,9 @@ body{
   animation:fall 7s linear infinite;
   pointer-events:none;
 }
-
 @keyframes fall{
   to{transform:translateY(110vh);opacity:0}
 }
-
-h1{margin-top:30px}
 
 .grid{
   display:grid;
@@ -61,20 +58,22 @@ h1{margin-top:30px}
 .content{
   background:white;
   border-radius:26px;
-  padding:22px;
-  max-width:480px;
+  padding:25px;
+  max-width:460px;
   animation:pop .4s ease;
 }
-
 @keyframes pop{
   from{transform:scale(.7);opacity:0}
   to{transform:scale(1);opacity:1}
 }
 
-.content img{
-  width:100%;
-  max-height:240px;
-  object-fit:contain;
+.anim{
+  font-size:70px;
+  animation:bounce 1.4s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
 }
 
 .close{
@@ -130,43 +129,21 @@ setInterval(()=>{
 <script>
 const m=document.getElementById("m");
 const c=document.getElementById("c");
-
 function closeM(){m.style.display="none"}
 
 function openL(t){
 const d={
-rose:{
-gif:"https://media.tenor.com/7s0r1YkzJ7kAAAAC/rose-love.gif",
-txt:"rose 🌹 eppo tharan pattillalo… onlineil rose tharam 😌"
-},
-choco:{
-gif:"https://media.tenor.com/1G3pLZxZzFQAAAAC/chocolate-love.gif",
-txt:"chocolate venon ella 🫣 kavilil kadi tharan option indo achu 😘"
-},
-teddy:{
-gif:"https://media.tenor.com/5b5jzKX4t9YAAAAC/teddy-bear-hug.gif",
-txt:"teddy vangi tharam… but nee kettipidich uranguvoo 🧐"
-},
-promise:{
-gif:"https://media.tenor.com/FmN4XkG4z0cAAAAC/promise-love.gif",
-txt:"ente life ninak promise 🥹🫂 nee ellathe njan ella 😘"
-},
-hug:{
-gif:"https://media.tenor.com/6gHLhmwO87kAAAAC/hug-love.gif",
-txt:"ente aduth indarney njan kettipidichond erunney 🥹🫂"
-},
-kiss:{
-gif:"https://media.tenor.com/4n8ZxvDkY0sAAAAC/flying-kiss-love.gif",
-txt:"ishtapole tharuindalo 🫣 onnude kuduthal thaa 😘"
-},
-val:{
-gif:"https://media.tenor.com/Ry6pWcZ4w1cAAAAC/love-heart.gif",
-txt:"jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘"
-}
+rose:{e:"🌹💗",txt:"rose 🌹 eppo tharan pattillalo… onlineil rose tharam 😌"},
+choco:{e:"🍫😘",txt:"chocolate venon ella 🫣 kavilil kadi tharan option indo achu 😘"},
+teddy:{e:"🧸🫂",txt:"teddy vangi tharam… but nee kettipidich uranguvoo 🧐"},
+promise:{e:"💌🥹",txt:"ente life ninak promise 🥹🫂 nee ellathe njan ella 😘"},
+hug:{e:"🫂💗",txt:"ente aduth indarney njan kettipidichond erunney 🥹🫂"},
+kiss:{e:"💋😘",txt:"ishtapole tharuindalo 🫣 onnude kuduthal thaa 😘"},
+val:{e:"❤️💍",txt:"jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘"}
 };
 
 c.innerHTML=`
-<img src="${d[t].gif}">
+<div class="anim">${d[t].e}</div>
 <p>${d[t].txt}</p>
 <button class="close" onclick="closeM()">Close</button>`;
 m.style.display="flex";
@@ -175,11 +152,11 @@ m.style.display="flex";
 function finalL(){
 document.getElementById("song").play();
 c.innerHTML=`
-<img src="https://media.tenor.com/JW9W1XW9XoUAAAAC/love-you.gif">
+<div class="anim">💗💋💗</div>
 <p style="white-space:pre-wrap;text-align:left;line-height:1.8">
 Happy Valentine's day achuuu 🥹😘,
 so enich ente first valentine's day ahh...
-( full letter stays here 💗 )
+( your full letter here 💗 )
 </p>
 <button class="close" onclick="closeM()">Close</button>`;
 m.style.display="flex";
