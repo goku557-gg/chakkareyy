@@ -19,14 +19,12 @@ body{
   color:white;
 }
 
-/* HEART CANVAS */
 canvas{
   position:fixed;
   inset:0;
   z-index:-1;
 }
 
-/* EMOJI RAIN */
 .emoji{
   position:fixed;
   top:-40px;
@@ -38,14 +36,12 @@ canvas{
   to{transform:translateY(110vh) rotate(360deg)}
 }
 
-/* TITLE */
 h1{
   font-family:'Great Vibes',cursive;
   font-size:3.8rem;
   margin:30px 0 10px;
 }
 
-/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
@@ -68,7 +64,6 @@ h1{
 }
 .card span{font-size:55px}
 
-/* MODAL */
 .modal{
   position:fixed;
   inset:0;
@@ -105,14 +100,12 @@ h1{
   cursor:pointer;
 }
 
-/* LETTER */
 .letter{
   font-family:'Great Vibes',cursive;
   font-size:1.4rem;
   line-height:2;
 }
 
-/* PRANK */
 .prank{
   margin:10px;
   padding:10px 22px;
@@ -132,17 +125,34 @@ h1{
 <h1>For You 💗</h1>
 
 <div class="grid">
-  <div class="card" onclick="wish('🌹 Rose Day','Every rose is jealous of you 🌹','https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif')"><span>🌹</span></div>
-  <div class="card" onclick="wish('💍 Propose Day','Forever starts with you 💍','https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif')"><span>💍</span></div>
-  <div class="card" onclick="wish('🍫 Chocolate Day','Sweeter than chocolate 🍫','https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif')"><span>🍫</span></div>
-  <div class="card" onclick="wish('🧸 Teddy Day','Your hug = home 🧸','https://media.giphy.com/media/3oEjI4sFlp73fvEYgw/giphy.gif')"><span>🧸</span></div>
-  <div class="card" onclick="wish('🤞 Promise Day','Always you 🤍','https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif')"><span>🤞</span></div>
-  <div class="card" onclick="wish('🤗 Hug Day','Missing your warmth 🤗','https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
+  <div class="card" onclick="wish('🌹 Rose Day',
+  'rose 🌹 enthayallum eppo tharan pattillalo kannan pattuvarney thanney but enodu choych nokk onlineil rose tharam 😌',
+  'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif')"><span>🌹</span></div>
 
-  <!-- KISS DAY – FLYING KISS GIF -->
-  <div class="card" onclick="wish('😘 Kiss Day','All my kisses fly to you 😘💨','https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif')"><span>😘</span></div>
+  <div class="card" onclick="wish('🍫 Chocolate Day',
+  'chocolate onnum enich venon ella 🫣 kavilil kadi tharan olla option indo achu ?🫣 Vangitharatto 😘',
+  'https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif')"><span>🍫</span></div>
 
-  <!-- FINAL LETTER -->
+  <div class="card" onclick="wish('🧸 Teddy Day',
+  'teddy akke vangi tharam but nee athine kettipidich uranguvoo 🧐',
+  'https://media.giphy.com/media/3oEjI4sFlp73fvEYgw/giphy.gif')"><span>🧸</span></div>
+
+  <div class="card" onclick="wish('🤞 Promise Day',
+  'mattethil paranja poley thanney ente life ahh ninak promise 🥹🫂 nee ellathe njan ella ponney 😘',
+  'https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif')"><span>🤞</span></div>
+
+  <div class="card" onclick="wish('🤗 Hug Day',
+  'ente aduth indarney njan eppollum kettipidichond erunney 🥹🫂 chakkarey 😘',
+  'https://media.giphy.com/media/od5H3PmEG5EVq/giphy.gif')"><span>🤗</span></div>
+
+  <div class="card" onclick="wish('😘 Kiss Day',
+  '🫣 enich ishttapole tharuindalo alley 🫣 onnude kuduthal thaa njanum aloyikkam 😘',
+  'https://media.giphy.com/media/G3va31oEEnIkM/giphy.gif')"><span>😘</span></div>
+
+  <div class="card" onclick="wish('❤️ Valentine’s Day',
+  'jevithakkallam motham nee ente chakkara valentine ahh 😘😘😘😘😘😘',
+  'https://media.giphy.com/media/l0MYC0LajbaPoEADu/giphy.gif')"><span>❤️</span></div>
+
   <div class="card" onclick="finalLetter()"><span>💌</span></div>
 </div>
 
@@ -153,10 +163,8 @@ h1{
 <audio id="song" src="pranayanila.mp3" loop></audio>
 
 <script>
-/* CHANGE HER NAME HERE 💗 */
-const herName = "ACHUU";
+const herName="ACHUU";
 
-/* AUTO HEART + NAME */
 const canvas=document.getElementById("heartCanvas");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
@@ -178,8 +186,7 @@ function drawHeart(){
 }
 setInterval(drawHeart,100);
 
-/* EMOJI RAIN */
-const emojis=["💗","💖","💘","😘","💋","😍"];
+const emojis=["💗","💖","💘","😘","💋","🫂"];
 setInterval(()=>{
   const e=document.createElement("div");
   e.className="emoji";
@@ -190,18 +197,17 @@ setInterval(()=>{
   setTimeout(()=>e.remove(),7000);
 },200);
 
-/* MODALS */
 function wish(title,text,gif){
   modal.style.display="flex";
   content.innerHTML=`
     <h2>${title}</h2>
     <img src="${gif}">
     <p>${text}</p>
+    <button class="prank" onclick="alert('Chakkarey 😜💗')">DON’T CLICK 😈</button>
     <button class="close" onclick="closeM()">Close</button>
   `;
 }
 
-/* FINAL LETTER */
 function finalLetter(){
   modal.style.display="flex";
   document.getElementById("song").play();
@@ -209,13 +215,11 @@ function finalLetter(){
     <h2>💗 My Love 💗</h2>
     <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
     <div class="letter">
-Happy Valentine's day achuuu 🥹😘<br><br>
-Nee enik sherikkum oru blessing ahh 🥹<br>
-When you're with me, I am always happy 💞<br><br>
-I love you more than my life 😭💗<br>
-Will you be my Valentine? 💐
+      I love you more than my life 😭💗<br>
+      Nee ente ellam ahh chakkareyyy 🫂💋<br>
+      Forever yours 😘
     </div>
-    <button class="prank" onclick="alert('Now you are mine forever 😌💘')">DON'T CLICK 😈</button>
+    <button class="prank" onclick="alert('Now you are mine forever 😌💘')">DON’T CLICK 😈</button>
     <button class="close" onclick="closeM()">Close</button>
   `;
 }
